@@ -7,7 +7,7 @@ class AppStore = AppStoreBase with _$AppStore;
 
 abstract class AppStoreBase with Store {
   @observable
-  String detail = "";
+  String detail = "-";
 
   @observable
   int index = 0;

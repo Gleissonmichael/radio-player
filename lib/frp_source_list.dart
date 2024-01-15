@@ -30,7 +30,7 @@ class _FRPSourceListState extends State<FRPSourceList> {
         shrinkWrap: true,
         itemCount: widget.frpSource.mediaSources?.length,
         itemBuilder: (context, index) {
-          widget.store.updateDetail('');
+          widget.store.updateDetail('-');
           MediaSources mediaItem = widget.frpSource.mediaSources![index];
           return InkWell(
             onTap: () => {

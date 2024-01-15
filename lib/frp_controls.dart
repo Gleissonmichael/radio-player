@@ -154,6 +154,6 @@ class _FRPPlayerControlsState extends State<FRPPlayerControls> {
   }
 
   void resetNowPlayingInfo() {
-    widget.store.updateDetail('');
+    widget.store.updateDetail('-');
   }
 }
