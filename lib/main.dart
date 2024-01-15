@@ -96,82 +96,13 @@ class RadioAppState extends State<RadioApp> {
       ),
       body: Column(
         children: [
-          // const SizedBox(height: 120),
-          // const Text("Adicione sua Rádio"),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-          //   child: TextFormField(
-          //     controller: controllerText,
-          //     onFieldSubmitted: (value) {
-          //       onSubmit(value);
-          //     },
-          //     decoration: InputDecoration(
-          //         alignLabelWithHint: true,
-          //         contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-          //         border: OutlineInputBorder(
-          //             borderRadius: BorderRadius.circular(5.0),
-          //             borderSide: const BorderSide(width: 1)),
-          //         focusedBorder: OutlineInputBorder(
-          //           borderRadius: BorderRadius.circular(5.0),
-          //           borderSide: const BorderSide(width: 1, color: Colors.black),
-          //         ),
-          //         filled: true,
-          //         counterText: ""),
-          //   ),
-          // ),
-          // IconButton(
-          //   icon: const Icon(Icons.add),
-          //   onPressed: () {
-          //     onSubmit(controllerText.text);
-          //   },
-          // ),
-          // IconButton(
-          //   icon: const Icon(Icons.skip_next),
-          //   onPressed: () {
-          //     _flutterRadioPlayer.next();
-          //   },
-          // ),
           const SizedBox(height: 120),
+          Image.network(
+            'https://ed.dev.br/wp-content/themes/amora/images/layout/header/logo.png',
+            width: 120,
+          ),
+          const SizedBox(height: 60),
           const Text("Tocando agora"),
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.center,
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     IconButton(
-          //       icon: const Icon(Icons.volume_down),
-          //       iconSize: 20,
-          //       onPressed: () {
-          //         if (volume > 0) {
-          //           volume = volume - 0.25;
-          //           _flutterRadioPlayer.setVolume(volume);
-          //         }
-          //       },
-          //     ),
-          //     IconButton(
-          //       icon: const Icon(Icons.play_arrow),
-          //       iconSize: 70,
-          //       onPressed: () {
-          //         _flutterRadioPlayer.play();
-          //       },
-          //     ),
-          //     IconButton(
-          //       icon: const Icon(Icons.pause),
-          //       iconSize: 50,
-          //       onPressed: () {
-          //         _flutterRadioPlayer.pause();
-          //       },
-          //     ),
-          //     IconButton(
-          //         icon: const Icon(Icons.volume_up),
-          //         iconSize: 20,
-          //         onPressed: () {
-          //           if (volume < 1) {
-          //             volume = volume + 0.25;
-          //             _flutterRadioPlayer.setVolume(volume);
-          //           }
-          //         }),
-          //   ],
-          // ),
           FRPlayer(
             flutterRadioPlayer: _flutterRadioPlayer,
             frpSource: frpSource,
