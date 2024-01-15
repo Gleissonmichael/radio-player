@@ -2,14 +2,17 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_radio_player/flutter_radio_player.dart';
 import 'package:flutter_radio_player/models/frp_player_event.dart';
+import 'package:player/shared/store/app.store.dart';
 
 class FRPPlayerControls extends StatefulWidget {
   final FlutterRadioPlayer flutterRadioPlayer;
   final Function addSourceFunction;
   final Function nextSource;
   final Function prevSource;
+  final AppStore store;
   final Function(String status) updateCurrentStatus;
 
   const FRPPlayerControls({
@@ -19,6 +22,7 @@ class FRPPlayerControls extends StatefulWidget {
     required this.nextSource,
     required this.prevSource,
     required this.updateCurrentStatus,
+    required this.store,
   }) : super(key: key);
 
   @override
@@ -51,6 +55,7 @@ class _FRPPlayerControlsState extends State<FRPPlayerControls> {
           }
           if (frpEvent.icyMetaDetails != null) {
             currentPlaying = frpEvent.icyMetaDetails!;
+            widget.store.updateDetail(currentPlaying);
             nowPlayingTextController.text = frpEvent.icyMetaDetails!;
           }
           var statusIcon = const Icon(Icons.pause_circle_filled);
@@ -80,13 +85,20 @@ class _FRPPlayerControlsState extends State<FRPPlayerControls> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Text(currentPlaying),
+                        Observer(
+                          builder: (_) => Text(
+                            widget.store.detail,
+                            textAlign: TextAlign.center,
+                            maxLines: 3,
+                          ),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
                               onPressed: () async {
                                 widget.flutterRadioPlayer.previous();
+                                widget.store.updateIndex(widget.store.index - 1);
                                 resetNowPlayingInfo();
                               },
                               icon: const Icon(Icons.skip_previous),
@@ -108,6 +120,7 @@ class _FRPPlayerControlsState extends State<FRPPlayerControls> {
                             IconButton(
                               onPressed: () async {
                                 widget.flutterRadioPlayer.next();
+                                widget.store.updateIndex(widget.store.index + 1);
                                 resetNowPlayingInfo();
                               },
                               icon: const Icon(Icons.skip_next),
@@ -141,6 +154,6 @@ class _FRPPlayerControlsState extends State<FRPPlayerControls> {
   }
 
   void resetNowPlayingInfo() {
-    currentPlaying = "N/A";
+    widget.store.updateDetail('');
   }
 }

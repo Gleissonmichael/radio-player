@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_radio_player/flutter_radio_player.dart';
 import 'package:flutter_radio_player/models/frp_source_modal.dart';
 import 'package:player/frp_player.dart';
+import 'package:player/shared/store/app.store.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,7 @@ class RadioAppState extends State<RadioApp> {
   TextEditingController controllerText = TextEditingController();
   double volume = 0.5;
   final FlutterRadioPlayer _flutterRadioPlayer = FlutterRadioPlayer();
+  final AppStore store = AppStore();
 
   final FRPSource frpSource = FRPSource(
     mediaSources: <MediaSources>[
@@ -70,23 +72,6 @@ class RadioAppState extends State<RadioApp> {
     _flutterRadioPlayer.addMediaSources(frpSource);
   }
 
-  void onSubmit(String value) async {
-    _flutterRadioPlayer.pause();
-
-    FRPSource newFrpSource = FRPSource(
-      mediaSources: <MediaSources>[
-        MediaSources(
-            url: "http://s12.maxcast.com.br:8078/autodj",
-            description: "Stream with ICY2",
-            isPrimary: true,
-            title: "Test2",
-            isAac: false),
-      ],
-    );
-
-    _flutterRadioPlayer.addMediaSources(newFrpSource);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +81,7 @@ class RadioAppState extends State<RadioApp> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 120),
+          const SizedBox(height: 100),
           Image.network(
             'https://ed.dev.br/wp-content/themes/amora/images/layout/header/logo.png',
             width: 120,
@@ -104,6 +89,7 @@ class RadioAppState extends State<RadioApp> {
           const SizedBox(height: 60),
           const Text("Tocando agora"),
           FRPlayer(
+            store: store,
             flutterRadioPlayer: _flutterRadioPlayer,
             frpSource: frpSource,
             useIcyData: true,
