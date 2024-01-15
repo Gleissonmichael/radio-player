@@ -41,10 +41,10 @@ class RadioAppState extends State<RadioApp> {
           title: "Rádio SESC RJ",
           isAac: true),
       MediaSources(
-          url: 'https://shout25.crossradio.com.br:18066/live',
-          description: "Correio SAT",
+          url: 'https://26643.live.streamtheworld.com/MIXRIOAAC_SC',
+          description: "Rádio MIX FM - Rio de Janeiro / RJ - Brasil",
           isPrimary: false,
-          title: "FM Correio",
+          title: "Rádio MIX FM",
           isAac: true),
       MediaSources(
           url: 'https://ice.fabricahost.com.br/radiobahiafm',

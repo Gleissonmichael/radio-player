@@ -32,7 +32,7 @@ class FRPPlayerControls extends StatefulWidget {
 class _FRPPlayerControlsState extends State<FRPPlayerControls> {
   String latestPlaybackStatus = "flutter_radio_stopped";
   String currentPlaying = "N/A";
-  double volume = 0.5;
+  double volume = 1;
   final nowPlayingTextController = TextEditingController();
 
   @override
